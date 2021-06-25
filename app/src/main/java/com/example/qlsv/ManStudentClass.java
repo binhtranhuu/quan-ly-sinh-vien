@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -30,7 +31,7 @@ public class ManStudentClass extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_man_student_class);
 
-        databaseQLSV =  new database(this);
+        databaseQLSV = new database(this);
 
         // Ánh xạ
         lvListClass = findViewById(R.id.lvListClass);
@@ -43,6 +44,19 @@ public class ManStudentClass extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        lvListClass.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(ManStudentClass.this, ManListStudentOfClass.class);
+                int idLopHoc = classArrayList.get(position).getId();
+                String tenLopHoc = classArrayList.get(position).getName();
+                intent.putExtra("idLopHoc", idLopHoc);
+                intent.putExtra("tenLopHoc", tenLopHoc);
+                startActivity(intent);
+            }
+        });
+
 
         classArrayList = databaseQLSV.getAllClass();
         adapterClass = new adapterClass(getApplicationContext(), classArrayList);

@@ -179,4 +179,45 @@ public class database extends SQLiteOpenHelper {
         db.insert(TABLE_DK, null, values);
         db.close();
     }
+
+    // Lấy tất cả dữ liệu trong bảng tbl_register
+    public ArrayList<StudentClass> getAllStudentClass() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<StudentClass> listStuCla = new ArrayList<>();
+        String sqlcode = "SELECT *FROM " + TABLE_DK + " ORDER BY " + DK_STU_ID;
+        Cursor cursor = db.rawQuery(sqlcode, null);
+        if (cursor.moveToFirst()) {
+            do {
+                StudentClass temp = new StudentClass(
+                        cursor.getInt(0),
+                        cursor.getInt(1),
+                        cursor.getString(2),
+                        cursor.getString(3));
+                listStuCla.add(temp);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return listStuCla;
+    }
+
+    // lấy thông tin thành viên qua id
+    public Student getStudentById(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_STU, new String[]{STU_ID,
+                        STU_NAME, STU_BIR, STU_HOME, STU_YEAR}, STU_ID + "=?",
+                new String[]{String.valueOf(id)}, null, null, null, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+        }
+        Student student = new Student(
+                cursor.getInt(0),
+                cursor.getString(1),
+                cursor.getString(2),
+                cursor.getString(3),
+                cursor.getString(4));
+        cursor.close();
+        db.close();
+        return student;
+    }
 }
