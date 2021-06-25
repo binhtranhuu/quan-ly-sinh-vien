@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 
 import com.example.qlsv.model.Class;
 import com.example.qlsv.model.Student;
+import com.example.qlsv.model.StudentClass;
 
 import java.util.ArrayList;
 
@@ -162,6 +163,20 @@ public class database extends SQLiteOpenHelper {
         values.put(CLA_DELTAIL, aClass.getDetail());
 
         db.insert(TABLE_CLA, null, values);
+        db.close();
+    }
+
+    // Đăng ký học
+    public void addStudentClass(StudentClass studentClass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(DK_STU_ID, studentClass.getId_student());
+        values.put(DK_CLA_ID, studentClass.getId_class());
+        values.put(DK_TERM, studentClass.getTerm());
+        values.put(DK_CREDIT, studentClass.getCredit());
+
+        db.insert(TABLE_DK, null, values);
         db.close();
     }
 }

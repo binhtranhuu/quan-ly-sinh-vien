@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginVertical="100dp"
     tools:context=".ManDangKyHoc">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/tvDangKyHoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="Đăng ký học"
+        android:textSize="25dp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spSinhVien"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvDangKyHoc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <Spinner
+        android:id="@+id/spLopHoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spSinhVien"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <Spinner
+        android:id="@+id/spTerm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spLopHoc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <Spinner
+        android:id="@+id/spCredit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spTerm"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btnDangKyHoc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spCredit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Đăng ký học" />
+
+</RelativeLayout>

@@ -1,5 +1,7 @@
 package com.example.qlsv.model;
 
+import androidx.annotation.NonNull;
+
 public class Class {
 
     private int id;
@@ -39,5 +41,21 @@ public class Class {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return name;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Class) {
+            Class c = (Class) obj;
+            if (c.getName().equals(name) && c.getId() == id) return true;
+        }
+
+        return false;
     }
 }
