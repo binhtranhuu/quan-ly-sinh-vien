@@ -268,4 +268,18 @@ public class database extends SQLiteOpenHelper {
         int res = db.delete(TABLE_DK, DK_STU_ID + " = " + i, null);
         return res;
     }
+
+    // Update sinh viên
+    public boolean updateStudent(Student student, int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(STU_NAME, student.getName());
+        values.put(STU_BIR, student.getBirthday());
+        values.put(STU_HOME, student.getHome());
+        values.put(STU_YEAR, student.getYear());
+
+        db.update(TABLE_STU, values, STU_ID + "=" + id, null);
+        return true;
+    }
 }

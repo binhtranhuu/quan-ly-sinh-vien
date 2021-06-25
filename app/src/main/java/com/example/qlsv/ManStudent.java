@@ -70,9 +70,6 @@ public class ManStudent extends AppCompatActivity {
         // Nạp layout vào dialog
         dialog.setContentView(R.layout.dialogapp);
 
-        // Tắt click ra ngoài là đóng, chỉ click nó mới đóng
-        dialog.setCanceledOnTouchOutside(false);
-
         //Ánh xạ
         Button btnUpdate = dialog.findViewById(R.id.btnUpdate);
         Button btnDelete = dialog.findViewById(R.id.btnDelete);
@@ -103,7 +100,17 @@ public class ManStudent extends AppCompatActivity {
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(ManStudent.this, ManEditStudent.class);
+                int id = studentArrayList.get(position).getId();
+                String name = studentArrayList.get(position).getName();
+                String birthday = studentArrayList.get(position).getBirthday();
+                String home = studentArrayList.get(position).getHome();
+                String year = studentArrayList.get(position).getYear();
+                intent.putExtra("id", id);
+                intent.putExtra("name", name);
+                intent.putExtra("birthday", birthday);
+                intent.putExtra("home", home);
+                startActivity(intent);
             }
         });
 
