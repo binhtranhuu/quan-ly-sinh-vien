@@ -2,7 +2,9 @@ package com.example.qlsv;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -32,6 +34,14 @@ public class ManClass extends AppCompatActivity {
 
         lvClass = findViewById(R.id.lvClass);
         btnAddClass = findViewById(R.id.btnAddClass);
+
+        btnAddClass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManClass.this, ManAddClass.class);
+                startActivity(intent);
+            }
+        });
 
         classArrayList = databaseQLSV.getAllClass();
         adapterClass = new adapterClass(getApplicationContext(), classArrayList);

@@ -152,4 +152,16 @@ public class database extends SQLiteOpenHelper {
         db.insert(TABLE_STU, null, values);
         db.close();
     }
+
+    // Thêm lớp học
+    public void addClass(Class aClass) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(CLA_NAME, aClass.getName());
+        values.put(CLA_DELTAIL, aClass.getDetail());
+
+        db.insert(TABLE_CLA, null, values);
+        db.close();
+    }
 }
