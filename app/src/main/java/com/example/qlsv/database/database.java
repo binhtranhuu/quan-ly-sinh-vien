@@ -220,4 +220,26 @@ public class database extends SQLiteOpenHelper {
         db.close();
         return student;
     }
+
+    // Tìm kiếm sinh viên theo tên
+    public ArrayList<Student> getStudentByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ArrayList<Student> listStu = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_STU + " WHERE " + STU_NAME + " LIKE '%" + name + "%'", null);
+        if (cursor.moveToFirst()) {
+            do {
+                Student student = new Student(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4));
+                listStu.add(student);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return listStu;
+    }
 }
