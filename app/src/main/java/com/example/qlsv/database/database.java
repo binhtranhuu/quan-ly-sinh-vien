@@ -242,4 +242,12 @@ public class database extends SQLiteOpenHelper {
         db.close();
         return listStu;
     }
+
+    // Lấy số lượng thành viên theo classId
+    public int getTotalStudentByClassId(int classId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_DK + " WHERE " + DK_CLA_ID + " = " + classId, null);
+        return cursor.getCount();
+    }
 }

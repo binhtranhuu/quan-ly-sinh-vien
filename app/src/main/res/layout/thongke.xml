@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvTenLopHoc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tên lớp học"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/tvThongKe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTenLopHoc"
+        android:text="Số lượng: "
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/tvSoLuongSV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvTenLopHoc"
+        android:layout_toRightOf="@+id/tvThongKe"
+        android:text="15"
+        android:textColor="#F30707"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+</RelativeLayout>
