@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
@@ -249,5 +250,22 @@ public class database extends SQLiteOpenHelper {
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_DK + " WHERE " + DK_CLA_ID + " = " + classId, null);
         return cursor.getCount();
+    }
+
+    // Xóa sinh viên trong bảng TABLE_STU
+    public int deleteStudent(int i) {
+        Log.e("ID is: ", i + "");
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int res = db.delete(TABLE_STU, STU_ID + " = " + i, null);
+        return res;
+    }
+
+    // Xóa sinh viên trong bảng TABLE_DK
+    public int deleteStudent1(int i) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int res = db.delete(TABLE_DK, DK_STU_ID + " = " + i, null);
+        return res;
     }
 }
