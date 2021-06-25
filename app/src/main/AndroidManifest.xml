@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.QLSV">
-        <activity android:name=".ManTimKiem"></activity>
+        <activity android:name=".ManAddStudent"></activity>
+        <activity android:name=".ManTimKiem" />
         <activity android:name=".ManThongKe" />
         <activity android:name=".ManStudentClass" />
         <activity android:name=".ManClass" />

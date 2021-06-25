@@ -1,5 +1,6 @@
 package com.example.qlsv.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -136,5 +137,19 @@ public class database extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return classArrayList;
+    }
+
+    // Thêm sinh viên
+    public void addStudent(Student student) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(STU_NAME, student.getName());
+        values.put(STU_BIR, student.getBirthday());
+        values.put(STU_HOME, student.getHome());
+        values.put(STU_YEAR, student.getYear());
+
+        db.insert(TABLE_STU, null, values);
+        db.close();
     }
 }
