@@ -299,4 +299,16 @@ public class database extends SQLiteOpenHelper {
         int res = db.delete(TABLE_DK, DK_CLA_ID + " = " + i, null);
         return res;
     }
+
+    // Update lớp học
+    public boolean updateClass(Class aClass, int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(CLA_NAME, aClass.getName());
+        values.put(CLA_DELTAIL, aClass.getDetail());
+
+        db.update(TABLE_CLA, values, CLA_ID + "=" + id, null);
+        return true;
+    }
 }

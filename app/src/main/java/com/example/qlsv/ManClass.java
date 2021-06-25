@@ -95,6 +95,20 @@ public class ManClass extends AppCompatActivity {
             }
         });
 
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManClass.this, ManEditClass.class);
+                int id = classArrayList.get(position).getId();
+                String name = classArrayList.get(position).getName();
+                String detail = classArrayList.get(position).getDetail();
+                intent.putExtra("id", id);
+                intent.putExtra("name", name);
+                intent.putExtra("detail", detail);
+                startActivity(intent);
+            }
+        });
+
         // run dialog
         dialog.show();
 
