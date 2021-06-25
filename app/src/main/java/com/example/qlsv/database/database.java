@@ -1,10 +1,15 @@
 package com.example.qlsv.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import com.example.qlsv.model.Student;
+
+import java.util.ArrayList;
 
 public class database extends SQLiteOpenHelper {
 
@@ -88,5 +93,27 @@ public class database extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CLA);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_DK);
         onCreate(db);
+    }
+
+    // lấy tất cả sinh viên
+    public ArrayList<Student> getAllStudent() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Student> studentArrayList = new ArrayList<>();
+        String sqlcode = "SELECT * FROM " + TABLE_STU;
+        Cursor cursor = db.rawQuery(sqlcode, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Student student = new Student(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4));
+                studentArrayList.add(student);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return studentArrayList;
     }
 }
