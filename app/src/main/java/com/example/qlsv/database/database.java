@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import com.example.qlsv.model.Class;
 import com.example.qlsv.model.Student;
 
 import java.util.ArrayList;
@@ -115,5 +116,25 @@ public class database extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return studentArrayList;
+    }
+
+    // Lấy tất cả lớp
+    public ArrayList<Class> getAllClass() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ArrayList<Class> classArrayList = new ArrayList<>();
+        String sqlcode = "SELECT * FROM " + TABLE_CLA;
+        Cursor cursor = db.rawQuery(sqlcode, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Class aClass = new Class(
+                        cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2));
+                classArrayList.add(aClass);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return classArrayList;
     }
 }
