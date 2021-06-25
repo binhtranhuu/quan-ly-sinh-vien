@@ -282,4 +282,21 @@ public class database extends SQLiteOpenHelper {
         db.update(TABLE_STU, values, STU_ID + "=" + id, null);
         return true;
     }
+
+    // Xóa sinh viên trong bảng TABLE_STU
+    public int deleteClass(int i) {
+        Log.e("ID is: ", i + "");
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int res = db.delete(TABLE_CLA, CLA_ID + " = " + i, null);
+        return res;
+    }
+
+    // Xóa sinh viên trong bảng TABLE_DK
+    public int deleteClass1(int i) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        int res = db.delete(TABLE_DK, DK_CLA_ID + " = " + i, null);
+        return res;
+    }
 }
